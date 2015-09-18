@@ -1,13 +1,15 @@
 from card import Card, BuildingCard, VictoryCard, CardType
 from player import Player
 
-player_names = ["Al", "So"]
+players = []
+board = []
 
 def initialize_game():
-    # initiate game    
+    # initiate game   
+    player_names = ["Al", "So"]
     players = []
     board = []
-            
+ 
     for i in range (0,6):
         board.append(BuildingCard("bakery", 1, CardType.GREEN, [2,3], 1, False))
         board.append(BuildingCard("farm", 1, CardType.BLUE, [2], 1, False))
@@ -41,15 +43,15 @@ def initialize_game():
         
         players.append(player)
         
-def play_game(): 
+def play_game():
     play_round()
     
 def play_round():
-    for player in player_names:
+    for player in players:
         play_turn(player)
         
 def play_turn(player):
-    print "playing turn for " + player
+    print "playing turn for " + player.name
     
 
 def main():
