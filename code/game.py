@@ -8,7 +8,6 @@ def initialize_game():
     # initiate game with two players   
     player_names = ["Al", "So"]
     
-    
     players = []
     board = []
  
