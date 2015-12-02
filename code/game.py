@@ -1,6 +1,6 @@
 from card import Card, BuildingCard, CardType, CardName
 from player import Player
-from players import DoNothingPlayer, BuyGoldenPlayer
+from players import DoNothingPlayer, BuyGoldenPlayer, BuyGoldenExactPlayer
 import random
 
 class Game:
@@ -9,6 +9,11 @@ class Game:
     board = []
     winner = None
     round_number = 0
+    
+    def __init__(self, verbose):
+        self.verbose = verbose
+        self.initialize_game()
+    
     
     def initialize_game(self):
         # initiate game with two players   
@@ -41,7 +46,7 @@ class Game:
             self.board.append(BuildingCard(CardName.RADIO_TOWER, 22, CardType.GOLDEN, [], 0))
 
             if name == "Al":    
-                player = DoNothingPlayer(name)
+                player = BuyGoldenExactPlayer(name)
             else:
                 player = BuyGoldenPlayer(name)
             
@@ -54,14 +59,17 @@ class Game:
             
     def play_game(self):
         while (self.winner == None) and (self.round_number < 1000):
-            print "starting round " + str(self.round_number)
+            if self.verbose:
+                print "starting round " + str(self.round_number)
             self.round_number += 1
             self.play_round()
             
-        if self.winner:
-            print "winner is player " + self.winner.name
-        else:
-            print "no winner :("
+        if self.verbose:
+            if self.winner:
+                print "winner is player " + self.winner.name
+            else:
+                print "no winner :("
+        return self.winner
         
     def play_round(self):
         for player in self.players:
@@ -90,7 +98,8 @@ class Game:
         self.perform_action(action, player)
             
         if (player.has_all_gold_cards()):
-            print "We have a winner!"
+            if self.verbose:
+                print "We have a winner!"
             self.winner = player
         elif (player.has(CardName.RADIO_TOWER) and result[0] == result[1]):
             play_turn(player)
@@ -102,15 +111,13 @@ class Game:
         return False
         
     def perform_action(self, action, player):
-        if action:
-            print "performing"
         if action is not None:
-            print "Player " + player.name + " wants to buy " + action
             available = [x for x in self.board if x.card_name == action]
-            print "There are " + str(len(available)) + " left"
+            if self.verbose: 
+                print "Player " + player.name + " wants to buy " + action
+                print "There are " + str(len(available)) + " left"
             if len(available) == 0:
                 raise ValueError('Invalid Operation: Buy a card that is not in the board')
-            print available[0].card_name
             card = self.board.pop(self.board.index(available[0]))
             player.buy_card(card)
     

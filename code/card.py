@@ -32,7 +32,6 @@ class Card:
 		self.card_name = card_name
 		self.cost = cost
 		self.card_type = card_type
-		print "new card " + card_name + " instantiated" 
 		
 	# Indicates how many cards can the user have w.r.t. Card Type
 	def get_maximum_number_per_player(card_type):

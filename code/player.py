@@ -13,7 +13,7 @@ class Player(object):
 	def buy_card(self, card):
 		self.coins -= card.cost
 		self.playing_area.append(card)
-		print "player " + self.name + " has bought card " + card.card_name + " ("+ str(self.coins)+" coins left)"
+		#print "player " + self.name + " has bought card " + card.card_name + " ("+ str(self.coins)+" coins left)"
 		
 	def take_coins(self, amount):
 		self.coins += amount

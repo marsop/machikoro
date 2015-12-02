@@ -1,9 +1,12 @@
 from game import Game
 
 def main():
-    game = Game()
-    game.initialize_game()
-    game.play_game()
+
+    for i in range(1,10):
+        game = Game(False)
+        game.initialize_game()
+        winner = game.play_game()
+        print str(i) +": "+ winner.name
 
 if __name__ == "__main__":
     main()
