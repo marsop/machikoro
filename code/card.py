@@ -1,10 +1,4 @@
-class CardType:
-	BLUE = 1    
-	GREEN = 2	
-	RED = 3
-	PURPLE = 4
-	GOLDEN = 5
-	
+
 class CardName:
 	BAKERY = "Bakery"
 	FARM = "Farm"
@@ -35,10 +29,7 @@ class Card:
 		
 	# Indicates how many cards can the user have w.r.t. Card Type
 	def get_maximum_number_per_player(card_type):
-		if (card_type == PURPLE or card_type == GOLDEN):
-			return 1
-		else:
-			return -1
+		return (card_type == PURPLE or card_type == GOLDEN) ? 1 : -1
 			
 	def is_active(self, owner, active_player):
 		if (owner == active_player):
