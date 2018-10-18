@@ -1,25 +1,3 @@
-
-class CardName:
-	BAKERY = "Bakery"
-	FARM = "Farm"
-	WHEAT_FIELD = "Wheat Field"
-	CAFE = "Cafe"
-	MINI_MARKET = "Mini Market"
-	FOREST = "Forest"
-	MINE = "Mine"
-	MILK_FACTORY = "Milk Factory"
-	FURNITURE_FACTORY = "Furniture Factory"
-	FAMILY_RESTAURANT = "Family Restaurant"
-	MALL = "Mall"
-	PLANTATION = "Plantation"
-	STADIUM = "Stadium"
-	TELEVISION_TOWER = "Television Tower"
-	OFFICE_BUILDING = "Office Building"
-	TRAIN_STATION = "Train Station"
-	SHOPPING_MALL = "Shopping Mall"
-	AMUSEMENT_PARK = "Amusement Park"
-	RADIO_TOWER = "Radio Tower"
-
 class Card:
 	def __init__(self, card_name, cost, card_type):
 		"""Represents any card in the game"""
@@ -29,7 +7,7 @@ class Card:
 		
 	# Indicates how many cards can the user have w.r.t. Card Type
 	def get_maximum_number_per_player(card_type):
-		return (card_type == PURPLE or card_type == GOLDEN) ? 1 : -1
+		return 1 if card_type == PURPLE or card_type == GOLDEN else -1
 			
 	def is_active(self, owner, active_player):
 		if (owner == active_player):
