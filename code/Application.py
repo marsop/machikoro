@@ -6,7 +6,7 @@ def main():
         game = Game(False)
         game.initialize_game()
         winner = game.play_game()
-        print str(i) +": "+ winner.name
+        print('{}:{}'.format(i, winner.name))
 
 if __name__ == "__main__":
     main()
